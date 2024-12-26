@@ -62,7 +62,6 @@ def get_timesince_persian(time):
     return result
 
 
-
 def add_prefix_phonenum(phonenumber):
     phonenumber = str(phonenumber).replace('+98', '')
     return f'+98{phonenumber}'
@@ -74,7 +73,7 @@ def get_raw_phonenum(phonenumber):
 
 
 def form_validate_err(request, form):
-    if form.is_valid() is False:
+    if not form.is_valid():
         errors = form.errors.as_data()
         if errors:
             for field, err in errors.items():
@@ -84,7 +83,7 @@ def form_validate_err(request, form):
                 err = f'{field} {err}'
                 messages.error(request, err)
         else:
-            messages.error(request, 'دیتای ورودی نامعتبر است')
+            messages.error(request, _('incorrect Data'))
         return False
     return True
 
@@ -121,5 +120,3 @@ def log_event(msg, level='info', exc_info=False, **kwargs):
         'CRITICAL': 50,
     }
     logging.log(levels[level], msg=msg, exc_info=exc_info, **kwargs)
-
-

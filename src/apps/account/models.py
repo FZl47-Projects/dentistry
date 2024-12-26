@@ -58,6 +58,9 @@ class BaseUser(BaseModel, AbstractBaseUser):
     def get_role(self):
         return self._role
 
+    def get_dashboard_url(self):
+        return ''  # TODO: must completed
+
 
 class SuperUser(BaseUser, PermissionsMixin):
     _role = models.CharField(_('role'), max_length=10, default='super_user')

@@ -52,3 +52,9 @@ class CustomCommonUserChangeForm(UserChangeForm):
     class Meta:
         model = models.CommonUser
         fields = ('phonenumber',)
+
+
+class LoginForm(forms.Form):
+    username = PhoneNumberField(region='IR')
+    password = forms.CharField()
+    remember_me = forms.BooleanField(required=False)
